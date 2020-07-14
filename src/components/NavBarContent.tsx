@@ -21,6 +21,7 @@ export const NavBar = styled(NavBarBase)`
 
 export const Content = styled.div`
 	flex-grow: 1;
+	position: relative;
 `;
 
 export type NavBarContentProps = NavBarProps;
