@@ -34,7 +34,7 @@ const Title = styled(Link)`
 	}
 	/** Effect to show underline on title. */
 	&:hover::before {
-		width: 80%;
+		transform: scaleX(80%);
 	}
 	/** First hidden underline. */
 	&::before {
@@ -42,11 +42,13 @@ const Title = styled(Link)`
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: 0%;
+		width: 100%;
+		transform-origin: left;
+		transform: scaleX(0%);
 		height: 86%;
 		z-index: -1;
 		box-shadow: 0px 4px 0px 0px ${cyan};
-		transition: width 1s;
+		transition: all 1s;
 	}
 	/** Second underline. */
 	&::after {
