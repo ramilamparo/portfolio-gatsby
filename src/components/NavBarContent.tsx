@@ -40,7 +40,7 @@ export const NavBarContent: FC<NavBarContentProps> = ({
 		</NavBarContentRoot>
 	);
 };
-if (window !== undefined) {
+if (typeof window !== "undefined") {
 	/**
 	 * This hack will fix how mobile browsers displays full page when the browser navbar is displayed.
 	 * This will fix scrolling on our website.

@@ -37,6 +37,15 @@ module.exports = {
 				fonts: ["material icons", "roboto:300,400,500,700"]
 			}
 		},
+		/**
+		 * Enables components which lives above pages
+		 * and persists on page changes.
+		 */ {
+			resolve: `gatsby-plugin-layout`,
+			options: {
+				component: require.resolve(`./src/layouts/PageContainer.tsx`)
+			}
+		},
 		"gatsby-plugin-offline",
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-typescript"
