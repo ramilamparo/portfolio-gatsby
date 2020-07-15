@@ -51,7 +51,9 @@ export const NavBarLink = ({ icon, label, selected, to }: NavBarLinkProps) => {
 	return (
 		<Link selected={selected} to={to}>
 			<span className="label">{label}</span>
-			<Icon size="24px">{icon}</Icon>
+			<Icon className="icon" size="24px">
+				{icon}
+			</Icon>
 		</Link>
 	);
 };
