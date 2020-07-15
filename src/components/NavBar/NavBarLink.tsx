@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link as GatsbyLink } from "gatsby";
+import { Icon } from "../Icon";
 
 export interface NavBarLinkProps {
 	/** Path of the link. */
@@ -12,10 +13,6 @@ export interface NavBarLinkProps {
 	/** Highlights the button if true. */
 	selected: boolean;
 }
-
-const Icon = styled.span`
-	font-size: 24px;
-`;
 
 export const Link = styled(GatsbyLink)<Pick<NavBarLinkProps, "selected">>`
 	display: flex;
@@ -54,7 +51,7 @@ export const NavBarLink = ({ icon, label, selected, to }: NavBarLinkProps) => {
 	return (
 		<Link selected={selected} to={to}>
 			<span className="label">{label}</span>
-			<Icon className="icon material-icons">{icon}</Icon>
+			<Icon size="24px">{icon}</Icon>
 		</Link>
 	);
 };
