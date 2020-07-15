@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 export interface IconProps {
 	/** Size of icon to be inserted in css. */
-	size: string;
+	size?: string;
 	className?: string;
 	children: string;
 }
