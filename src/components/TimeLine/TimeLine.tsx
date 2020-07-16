@@ -4,7 +4,6 @@ import {
 	TimeLineItemProps,
 	TimeLineItem as TimeLineItemBase
 } from "./TimeLineItem";
-import { Icon } from "../Icon";
 import { Info } from "../Info";
 
 export interface TimeLineProps {
@@ -23,18 +22,6 @@ const TimeLineItemContainer = styled.div`
 		width: 7px;
 		border-radius: 1000px;
 		background-color: #464646;
-	}
-`;
-
-const Title = styled.h2`
-	font-size: 2rem;
-	display: flex;
-	align-items: center;
-	margin-bottom: 2rem;
-	/** Icon style. */
-	& .material-icons {
-		margin-right: 1rem;
-		color: #4d4d4d;
 	}
 `;
 
