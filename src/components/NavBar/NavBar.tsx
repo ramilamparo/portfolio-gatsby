@@ -49,7 +49,7 @@ export const NavBar = ({
 			<NavBarLogo {...logo} />
 			<NavBarLinkContainer>
 				{links.map((link) => (
-					<NavBarLink {...link} selected={isRouteActive(link.to)} />
+					<NavBarLink key={link.to} {...link} selected={isRouteActive(link.to)} />
 				))}
 			</NavBarLinkContainer>
 		</Nav>
