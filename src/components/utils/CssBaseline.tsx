@@ -7,6 +7,7 @@ export const CssBaseline = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: inherit;
+        border: none;
     }
 
     html {
