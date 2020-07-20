@@ -12,21 +12,16 @@ export type IconButtonProps = {
 	iconSource?: IconSource;
 } & ComponentProps<typeof Button>;
 
-export const Button = styled.button`
-	text-decoration: none;
-	color: ${gray4};
-	text-transform: uppercase;
-	flex-basis: 6rem;
+const Content = styled.span`
 	position: relative;
-	background: none;
 	display: inline-block;
 	& > * {
 		transition: all 0.5s;
 	}
-	& .icon {
+	& span:nth-of-type(2) {
 		font-size: 2.4rem;
 	}
-	& .label {
+	& span:nth-of-type(1) {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -34,18 +29,24 @@ export const Button = styled.button`
 		font-size: 1rem;
 		font-weight: 700;
 		opacity: 0;
-		backface-visibility: hidden;
 	}
 	/** Shows label on hover. */
-	&:hover .label {
+	&:hover span:nth-of-type(1) {
 		opacity: 1;
 		color: ${cyan};
 	}
 	/** Hides icon on hover. */
-	&:hover .icon {
+	&:hover span:nth-of-type(2) {
 		opacity: 0;
 		color: ${cyan};
 	}
+`;
+
+export const Button = styled.button`
+	text-decoration: none;
+	color: ${gray4};
+	text-transform: uppercase;
+	background: none;
 `;
 
 export const IconButton = ({
@@ -57,10 +58,12 @@ export const IconButton = ({
 }: IconButtonProps) => {
 	return (
 		<Button as={forwardAs} {...otherProps}>
-			<span className="label">{label}</span>
-			<Icon className="icon" source={iconSource}>
-				{icon}
-			</Icon>
+			<Content>
+				<span className="label">{label}</span>
+				<Icon className="icon" source={iconSource}>
+					{icon}
+				</Icon>
+			</Content>
 		</Button>
 	);
 };

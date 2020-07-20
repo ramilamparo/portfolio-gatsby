@@ -15,30 +15,15 @@ export interface NavBarLinkProps {
 }
 
 export const Link = styled(IconButton)<Pick<NavBarLinkProps, "selected">>`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
 	color: ${({ selected }) => (selected ? "#01fdd9" : "#888")};
-	text-transform: uppercase;
-	font-weight: 700;
 	flex-basis: 6rem;
-	position: relative;
-	& > * {
-		transition: all 0.5s;
-	}
-	& .label {
-		opacity: 0;
-		position: absolute;
-		backface-visibility: hidden;
-	}
 	/** Shows label on hover. */
-	&:hover .label {
+	&:hover span:nth-of-type(1) {
 		opacity: 1;
 		color: ${({ selected }) => (selected ? "#01fdd9" : "#fc0252")};
 	}
 	/** Hides icon on hover. */
-	&:hover .icon {
+	&:hover span:nth-of-type(2) {
 		opacity: 0;
 		color: ${({ selected }) => (selected ? "#01fdd9" : "#fc0252")};
 	}
