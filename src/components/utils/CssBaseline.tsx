@@ -17,6 +17,11 @@ export const CssBaseline = createGlobalStyle`
         background-color: #252627;
     }
 
+    /** Form elements does not inherit font-family by default. */
+    input, select, textarea, button {
+        font-family: inherit
+    }
+
     body {
         box-sizing: border-box;
         color: white;
