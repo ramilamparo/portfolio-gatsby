@@ -19,14 +19,14 @@ const Content = styled.span`
 		transition: all 0.5s;
 	}
 	& span:nth-of-type(2) {
-		font-size: 2.4rem;
+		font-size: 2.4em;
 	}
 	& span:nth-of-type(1) {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		font-size: 1rem;
+		font-size: 1em;
 		font-weight: 700;
 		opacity: 0;
 	}
