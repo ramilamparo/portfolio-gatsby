@@ -18,7 +18,13 @@ exports.onRenderBody = function ({ setHeadComponents }) {
 			href: "https://unpkg.com/jam-icons/css/jam.min.css"
 		}),
 		react.createElement("script", {
+			type: "module",
 			key: "ionicons",
+			src: "https://unpkg.com/ionicons@5.1.2/dist/ionicons.esm.js"
+		}),
+		react.createElement("script", {
+			key: "ionicons-nonmodule",
+			noModule: "",
 			src: "https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"
 		})
 	]);
