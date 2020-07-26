@@ -1,116 +1,24 @@
-import styled, {
-	css,
-	InterpolationFunction,
-	ThemedStyledProps,
-	CSSObject,
-	Interpolation
-} from "styled-components";
-
-/**
- * When true, enable auto sizing for column.
- * When false, hide column on breakpoint.
- * When number, specify the column size on the row. (1 to 12)
- */
-type ColBreakpoint = number | boolean;
-
-const DIMENSION_NAMES: DimensionName[] = ["xs", "sm", "md", "lg", "xl"];
-
-const OFFSET_NAMES: OffsetName[] = [
-	"xsOffset",
-	"smOffset",
-	"mdOffset",
-	"lgOffset",
-	"xlOffset"
-];
-
-type DimensionName = "xs" | "sm" | "md" | "lg" | "xl";
-
-type DimensionProps = Record<DimensionName, ColBreakpoint>;
-
-type OffsetName =
-	| "xsOffset"
-	| "smOffset"
-	| "mdOffset"
-	| "lgOffset"
-	| "xlOffset";
-
-/** Offset the column */
-type OffsetProps = Record<OffsetName, number | undefined>;
-
-export enum Breakpoint {
-	PHONE_ONLY = "min-width: 599px",
-	TABLET_PORTRAIT_UP = "min-width: 600px",
-	TABLET_LANDSCAPE_UP = "min-width: 900px",
-	DESKTOP_UP = "min-width: 1200px",
-	BIG_DESKTOP_UP = "min-width: 1800px"
-}
-
-const makeMedia = (breakpoint: Breakpoint) => (
-	first:
-		| TemplateStringsArray
-		| CSSObject
-		| InterpolationFunction<ThemedStyledProps<ColProps, {}>>,
-	...interpolation: Array<Interpolation<ThemedStyledProps<ColProps, {}>>>
-) => css<ColProps>`
-	@media (${breakpoint}) {
-		${css<ColProps>(first, ...interpolation)}
-	}
-`;
-
-const makeMarginMedia = (
-	breakpoint: Breakpoint,
-	offsetCount: number
-) => makeMedia(breakpoint)`
-	margin-left:${(12 * offsetCount) / 100}
-`;
-
-const getDimensionStyle = (breakpoint: ColBreakpoint) => {
-	/** If breakpoint is a number. */
-	if (typeof breakpoint === "number") {
-		return `
-        flex-basis: ${100 * breakpoint}%;
-        max-width: ${100 * breakpoint}%;
-        display: block;
-      `;
-	}
-	/** If breakpoint is a boolean. */
-	/** If true */
-	if (breakpoint) {
-		return `
-          flex-grow: 1;
-          flex-basis: 0;
-          max-width: 100%;
-          display: block;
-        `;
-	}
-	/** If false. */
-	return "display: none;";
-};
-
-const getOffsetStyle = (offset: OffsetName, offsetCount: number) => {
-	switch (offset) {
-		case "xsOffset":
-			return makeMarginMedia(Breakpoint.PHONE_ONLY, offsetCount);
-		case "smOffset":
-			return makeMarginMedia(Breakpoint.PHONE_ONLY, offsetCount);
-		case "mdOffset":
-			return makeMarginMedia(Breakpoint.PHONE_ONLY, offsetCount);
-		case "lgOffset":
-			return makeMarginMedia(Breakpoint.PHONE_ONLY, offsetCount);
-		case "xlOffset":
-			return makeMarginMedia(Breakpoint.PHONE_ONLY, offsetCount);
-	}
-};
+import { ReactNode } from "react";
+import styled from "styled-components";
+import {
+	DimensionName,
+	DimensionProps,
+	OffsetProps,
+	OffsetName,
+	OFFSET_NAMES,
+	DIMENSION_NAMES,
+	getOffsetStyle,
+	getDimensionStyle,
+	GridOptions
+} from "./utils";
 
 export interface ColProps extends DimensionProps, OffsetProps {
 	/** flex-direction: column-reverse. Default false. */
 	reverse?: boolean;
-
-	/** Spacing in the gutter. */
-	spacing: number;
+	children?: ReactNode;
 }
 
-export const Col = styled.div<ColProps>`
+export const Col = styled.div<ColProps & GridOptions>`
 	box-sizing: border-box;
 	/** Flex grow, flex shrink, flex basis. */
 	flex: 0 0 auto;
