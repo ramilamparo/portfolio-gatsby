@@ -14,7 +14,7 @@ export const CssBaseline = createGlobalStyle`
         /* 62.5% of the default browser font size(16px) = 10px */
         font-size: 62.5%;
         font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
-        background-color: #252627;
+        background-color: #222222;
     }
 
     /** Form elements does not inherit font-family by default. */

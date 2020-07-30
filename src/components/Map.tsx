@@ -15,6 +15,7 @@ export interface MapProps {
 		lat: number;
 		lng: number;
 	};
+	className?: string;
 }
 
 const StyledMap = styled((props: LeafletMapProps) => <LeafletMap {...props} />)`
@@ -23,7 +24,7 @@ const StyledMap = styled((props: LeafletMapProps) => <LeafletMap {...props} />)`
 	background: ${gray5};
 `;
 
-export const Map = ({ location }: MapProps) => {
+export const Map = ({ location, className }: MapProps) => {
 	const [viewport, setViewport] = useState<Viewport | undefined>();
 	useEffect(() => {
 		setViewport({
@@ -33,7 +34,7 @@ export const Map = ({ location }: MapProps) => {
 	}, [location]);
 
 	return (
-		<StyledMap viewport={viewport}>
+		<StyledMap viewport={viewport} className={className}>
 			<TileLayer
 				url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
 				attribution={`&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}

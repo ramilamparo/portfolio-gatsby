@@ -12,9 +12,17 @@ export type IconButtonProps = {
 	iconSource?: IconSource;
 } & ComponentProps<typeof Button>;
 
-const Content = styled.span`
+const Content = styled.span``;
+
+export const Button = styled.button`
+	text-decoration: none;
+	color: ${gray4};
+	text-transform: uppercase;
+	background: none;
+	display: flex;
+	align-items: center;
 	position: relative;
-	display: inline-block;
+	cursor: pointer;
 	& > * {
 		transition: all 0.5s;
 	}
@@ -42,13 +50,6 @@ const Content = styled.span`
 	}
 `;
 
-export const Button = styled.button`
-	text-decoration: none;
-	color: ${gray4};
-	text-transform: uppercase;
-	background: none;
-`;
-
 export const IconButton = ({
 	icon,
 	label,
@@ -58,12 +59,10 @@ export const IconButton = ({
 }: IconButtonProps) => {
 	return (
 		<Button as={forwardAs} {...otherProps}>
-			<Content>
-				<span className="label">{label}</span>
-				<Icon className="icon" source={iconSource}>
-					{icon}
-				</Icon>
-			</Content>
+			<span className="label">{label}</span>
+			<Icon className="icon" source={iconSource}>
+				{icon}
+			</Icon>
 		</Button>
 	);
 };

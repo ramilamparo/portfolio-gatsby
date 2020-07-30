@@ -2,12 +2,13 @@ import React, { ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 import { GridOptions } from "./utils";
 
-interface GridProps extends Partial<GridProps> {
+export interface GridProps extends Partial<GridOptions> {
 	children: ReactNode;
 }
 
 const defaultOptions: GridOptions = {
-	spacing: 1
+	spacing: 1,
+	gridSize: 12
 };
 
 export const Grid = ({ children, ...gridOptions }: GridProps) => {

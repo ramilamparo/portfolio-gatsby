@@ -1,7 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 import classNames from "classnames";
 
-export type IconSource = "jam" | "material" | "ionicon";
+export type IconSource = "jam" | "material";
 
 export interface IconProps {
 	/** Size of icon to be inserted in css. */
@@ -10,6 +11,12 @@ export interface IconProps {
 	children: string;
 }
 
+const IconBase = styled.span`
+	display: inline-flex;
+	align-items: center;
+	font-size: 2.4em;
+`;
+
 export const Icon = ({
 	className,
 	children,
@@ -17,16 +24,12 @@ export const Icon = ({
 }: IconProps) => {
 	if (source === "material") {
 		return (
-			<span className={classNames("material-icons", className)}>{children}</span>
+			<IconBase className={classNames("material-icons", className)}>
+				{children}
+			</IconBase>
 		);
 	}
-	if (source === "ionicon") {
-		return (
-			<ion-icon
-				className={classNames("ionicon", className)}
-				name={children}
-			></ion-icon>
-		);
-	}
-	return <span className={classNames("jam", `jam-${children}`, className)} />;
+	return (
+		<IconBase className={classNames("jam", `jam-${children}`, className)} />
+	);
 };
