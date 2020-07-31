@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 interface DescriptionProps {
 	children: string;
+	className?: string;
 }
 
 const Paragraph = styled.p<{ extraSpacing: boolean }>`
 	margin-bottom: ${({ extraSpacing }) => extraSpacing && "1em"};
 `;
 
-export const Description = ({ children }: DescriptionProps) => {
+export const Description = ({ className, children }: DescriptionProps) => {
 	const renderParagraphs = useCallback(() => {
 		/** use trim() to remove extra spacings in the beginning and end. */
 		const lines = children.trim().split("\n");
@@ -32,7 +33,11 @@ export const Description = ({ children }: DescriptionProps) => {
 			}
 			if (shouldPushParagraph) {
 				paragraphs.push(
-					<Paragraph key={i + paragraph} extraSpacing={extraParagraphSpacing}>
+					<Paragraph
+						key={i + paragraph}
+						className={className}
+						extraSpacing={extraParagraphSpacing}
+					>
 						{paragraph.trim()}
 					</Paragraph>
 				);

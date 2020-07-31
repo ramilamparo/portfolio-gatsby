@@ -12,8 +12,6 @@ export type IconButtonProps = {
 	iconSource?: IconSource;
 } & ComponentProps<typeof Button>;
 
-const Content = styled.span``;
-
 export const Button = styled.button`
 	text-decoration: none;
 	color: ${gray4};
