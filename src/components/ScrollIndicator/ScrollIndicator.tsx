@@ -18,6 +18,7 @@ interface ScrollSectionState extends Pick<Section, "id" | "label"> {
 
 const SectionContainer = styled.div`
 	overflow-y: auto;
+	scroll-behavior: smooth;
 	flex-grow: 1;
 `;
 
@@ -36,17 +37,16 @@ const IndicatorItemLink = styled.a`
 
 const IndicatorItemBar = styled.div`
 	height: 0.5rem;
-	width: 1rem;
+	width: 100%;
+	max-width: 5rem;
 	background-color: white;
-	transform-origin: center;
-`;
-
-const IndicatorItemBarContainer = styled.div`
+	transform-origin: left;
 	transition: all 200ms linear;
 `;
 
 const IndicatorItem = styled.div`
 	position: relative;
+
 	&:not(:last-child) {
 		margin-bottom: 2rem;
 	}
@@ -132,13 +132,15 @@ export const ScrollIndicator = ({ sections }: ScrollIndicatorProps) => {
 			<IndicatorContainer>
 				{sectionStatus.map((p) => (
 					<IndicatorItem key={p.id}>
-						<IndicatorItemBarContainer>
-							<IndicatorItemBar
-								style={{
-									transform: `scaleX(${p.distance * 4 + 1})`
-								}}
-							/>
-						</IndicatorItemBarContainer>
+						<IndicatorItemBar
+							style={{
+								transform: `scaleX(${clamp(
+									p.distance / 1,
+									0.1,
+									1
+								)}) translate(-50%, -50%)`
+							}}
+						/>
 						<IndicatorItemLink href={`#${p.id}`}>{p.label}</IndicatorItemLink>
 					</IndicatorItem>
 				))}
