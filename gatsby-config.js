@@ -41,9 +41,9 @@ module.exports = {
 		 * Enables components which lives above pages
 		 * and persists on page changes.
 		 */ {
-			resolve: `gatsby-plugin-layout`,
+			resolve: "gatsby-plugin-layout",
 			options: {
-				component: require.resolve(`./src/layouts/PageContainer.tsx`)
+				component: require.resolve("./src/layouts/PageContainer.tsx")
 			}
 		},
 		"gatsby-plugin-offline",

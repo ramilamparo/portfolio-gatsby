@@ -1,16 +1,5 @@
-import React, { ReactElement } from "react";
-import { SEO } from "../components/utils/SEO";
-import { Jumbotron } from "../components/Jumbotron";
+import React from "react";
 
-export default (): ReactElement => {
-	return (
-		<>
-			<SEO title={"Full Stack Developer"} />
-			<Jumbotron
-				title="Ramil Amparo"
-				subtitle="is a Dubai based JavaScript developer."
-				to="/about"
-			/>
-		</>
-	);
+export default () => {
+	return <></>;
 };
