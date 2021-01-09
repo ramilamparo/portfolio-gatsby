@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "name": "About Page"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "aboutMe": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

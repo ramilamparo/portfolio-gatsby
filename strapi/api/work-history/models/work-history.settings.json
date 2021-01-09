@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "work_histories",
+  "info": {
+    "name": "Work History"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "start": {
+      "type": "date",
+      "required": true
+    },
+    "end": {
+      "type": "date"
+    },
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "work_responsibilties": {
+      "via": "work_history",
+      "collection": "work-responsibilty"
+    }
+  }
+}

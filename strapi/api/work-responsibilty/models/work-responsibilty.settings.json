@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "work_responsibilties",
+  "info": {
+    "name": "Work Responsibility"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "responsibility": {
+      "type": "string",
+      "required": true
+    },
+    "work_history": {
+      "model": "work-history",
+      "via": "work_responsibilties"
+    }
+  }
+}

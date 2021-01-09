@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skills",
+  "info": {
+    "name": "Skill"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "score": {
+      "type": "decimal",
+      "required": true,
+      "max": 10,
+      "min": 0
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    }
+  }
+}
