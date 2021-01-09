@@ -107,7 +107,7 @@ export const TimeLineItem = ({
 		return (
 			<DescriptionList>
 				{description.map((text) => (
-					<DescriptionListItem>{text}</DescriptionListItem>
+					<DescriptionListItem key={text}>{text}</DescriptionListItem>
 				))}
 			</DescriptionList>
 		);
@@ -122,7 +122,7 @@ export const TimeLineItem = ({
 			</div>
 			{location && (
 				<Location>
-					<Icon size="1em">location_on</Icon>
+					<Icon>location_on</Icon>
 					{location}
 				</Location>
 			)}

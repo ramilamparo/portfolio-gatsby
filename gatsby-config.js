@@ -1,8 +1,6 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
+require("dotenv").config({
+	path: `.env.${process.env.NODE_ENV}`
+});
 
 module.exports = {
 	siteMetadata: {
@@ -12,6 +10,17 @@ module.exports = {
 		author: "Ramil Amparo"
 	},
 	plugins: [
+		/**
+		 * Allows gatsby to fetch data from strapi.
+		 */
+		{
+			resolve: "gatsby-source-strapi",
+			options: {
+				apiURL: process.env.API_URL || "http://localhost:1337",
+				contentTypes: ["portfolios", "skills", "work-histories"],
+				queryLimit: 1000
+			}
+		},
 		/**
 		 * Webapp manifest part of the progressive web app specification.
 		 * Allows user to add the site to their home screen on most mobile browsers.
@@ -46,9 +55,20 @@ module.exports = {
 		 * Enables components which lives above pages
 		 * and persists on page changes.
 		 */ {
-			resolve: `gatsby-plugin-layout`,
+			resolve: "gatsby-plugin-layout",
 			options: {
-				component: require.resolve(`./src/layouts/PageContainer.tsx`)
+				component: require.resolve("./src/layouts/PageContainer.tsx")
+			}
+		},
+		/**
+		 * This has many uses, but we are using this for strapi-source-plugin to download the images
+		 * and spit out a url.
+		 */
+		{
+			resolve: "gatsby-source-filesystem",
+			options: {
+				name: "assets",
+				path: `${__dirname}/src`
 			}
 		},
 		"gatsby-plugin-offline",

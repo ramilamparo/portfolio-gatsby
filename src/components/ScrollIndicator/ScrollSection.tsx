@@ -7,25 +7,27 @@ export interface ScrollSectionProps {
 	description: string;
 	id: string;
 	images: string[];
+	title: string;
 }
 
 const Section = styled.section`
 	height: 100%;
-	background-color: blue;
 	box-sizing: border-box;
-	border: solid white 1px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	overflow-x: hidden;
 `;
 
 export const ScrollSection = ({
 	description,
 	images,
-	id
+	id,
+	title
 }: ScrollSectionProps) => {
 	return (
 		<Section id={id}>
-			<Description>{description}</Description>
+			<Description title={title}>{description}</Description>
 			<ImageContainer images={images} />
 		</Section>
 	);

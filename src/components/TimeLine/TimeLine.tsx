@@ -36,7 +36,7 @@ export const TimeLine = ({ className, items, title, icon }: TimeLineProps) => {
 		<Info className={className} title={title} icon={icon}>
 			<TimeLineItemContainer>
 				{items.map((item) => (
-					<TimeLineItem {...item} />
+					<TimeLineItem key={item.title + item.subtitle + item.timeSpan} {...item} />
 				))}
 			</TimeLineItemContainer>
 		</Info>

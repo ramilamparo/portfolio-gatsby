@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Modal } from "./Modal";
 import { Icon } from "./Icon";
 
@@ -9,6 +9,7 @@ export interface ImageBoxProps {
 	/** Image alt. */
 	alt: string;
 	className?: string;
+	disableHoverEffects?: boolean;
 }
 
 const Image = styled.img`
@@ -25,12 +26,7 @@ const FullImage = styled.img`
 	height: 90vh;
 `;
 
-const Container = styled.div`
-	display: inline-block;
-	position: relative;
-	cursor: pointer;
-	overflow: hidden;
-
+const containerHoverEffects = css`
 	&:hover {
 		& img {
 			filter: blur(1px);
@@ -44,6 +40,15 @@ const Container = styled.div`
 			z-index: 1;
 		}
 	}
+`;
+
+const Container = styled.div<{ disableHoverEffects: boolean }>`
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	overflow: hidden;
+
+	${(p) => !p.disableHoverEffects && containerHoverEffects}
 
 	&::before {
 		opacity: 0;
@@ -68,11 +73,20 @@ const Container = styled.div`
 	}
 `;
 
-export const ImageBox = ({ src, alt, className }: ImageBoxProps) => {
+export const ImageBox = ({
+	src,
+	alt,
+	className,
+	disableHoverEffects = false
+}: ImageBoxProps) => {
 	const [fullScreen, setFullScreen] = useState(false);
 	return (
 		<>
-			<Container className={className} onClick={() => setFullScreen(true)}>
+			<Container
+				disableHoverEffects={disableHoverEffects}
+				className={className}
+				onClick={() => setFullScreen(true)}
+			>
 				<Image src={src} alt={alt} />
 				<Icon>fullscreen</Icon>
 			</Container>

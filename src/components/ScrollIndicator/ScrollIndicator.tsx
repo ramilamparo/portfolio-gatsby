@@ -1,6 +1,7 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import styled from "styled-components";
 import { ScrollSectionProps, ScrollSection } from "./ScrollSection";
+import * as colors from "../../utils/colors";
 
 export interface Section extends ScrollSectionProps {
 	label: string;
@@ -28,6 +29,10 @@ const Container = styled.div`
 `;
 
 const IndicatorItemLink = styled.a`
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	color: white;
 	text-decoration: none;
 	opacity: 0;
@@ -35,11 +40,23 @@ const IndicatorItemLink = styled.a`
 	font-size: 1.3rem;
 `;
 
-const IndicatorItemBar = styled.div`
+interface IndicatorItemBarProps {
+	distance: number;
+}
+
+const IndicatorItemBar = styled.div.attrs<IndicatorItemBarProps>((p) => ({
+	style: {
+		transform: `scaleX(${clamp(p.distance / 1, 0.1, 1)}) translate(-50%, -50%)`
+	}
+}))<IndicatorItemBarProps>`
+	position: absolute;
+	left: 50%;
+	top: 50%;
+
 	height: 0.5rem;
 	width: 100%;
 	max-width: 5rem;
-	background-color: white;
+	background-color: ${colors.gray1};
 	transform-origin: left;
 	transition: all 200ms linear;
 `;
@@ -49,13 +66,6 @@ const IndicatorItem = styled.div`
 
 	&:not(:last-child) {
 		margin-bottom: 2rem;
-	}
-
-	& > * {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
 	}
 	&:hover {
 		& > div {
@@ -132,15 +142,7 @@ export const ScrollIndicator = ({ sections }: ScrollIndicatorProps) => {
 			<IndicatorContainer>
 				{sectionStatus.map((p) => (
 					<IndicatorItem key={p.id}>
-						<IndicatorItemBar
-							style={{
-								transform: `scaleX(${clamp(
-									p.distance / 1,
-									0.1,
-									1
-								)}) translate(-50%, -50%)`
-							}}
-						/>
+						<IndicatorItemBar distance={p.distance} />
 						<IndicatorItemLink href={`#${p.id}`}>{p.label}</IndicatorItemLink>
 					</IndicatorItem>
 				))}
@@ -149,12 +151,13 @@ export const ScrollIndicator = ({ sections }: ScrollIndicatorProps) => {
 				onScroll={updateSectionScrollIndicator}
 				ref={sectionContainerEl}
 			>
-				{sections.map(({ id, images, description }) => (
+				{sections.map(({ id, images, description, title }) => (
 					<ScrollSection
 						key={id}
 						id={id}
 						images={images}
 						description={description}
+						title={title}
 					/>
 				))}
 			</SectionContainer>
