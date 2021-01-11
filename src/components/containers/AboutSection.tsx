@@ -7,7 +7,7 @@ export const AboutSection = () => {
 	const aboutQuery = useStrapiAboutPage();
 
 	return (
-		<Section title="About Me" id="about">
+		<Section title="About Me" id="about" titleVariant="header2">
 			<Typography variant="paragraph">{aboutQuery.aboutMe}</Typography>
 		</Section>
 	);

@@ -4,7 +4,7 @@ import { Typography } from "../presentational/Typography";
 
 export const ProjectsSection = () => {
 	return (
-		<Section title="Projects" id="#projects">
+		<Section title="Projects" id="#projects" titleVariant="header2">
 			<Typography variant="paragraph">My Projects</Typography>
 		</Section>
 	);

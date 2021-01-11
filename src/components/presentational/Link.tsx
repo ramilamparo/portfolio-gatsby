@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link as GatsbyLink } from "gatsby";
+import { baseTypographyStyle } from "./Typography";
 
 export interface LinkProps {
 	to: string;
@@ -8,12 +9,14 @@ export interface LinkProps {
 	className?: string;
 }
 
-const baseStyle = css`
-	font-size: 2rem;
-`;
-
 const StyledLink = styled(GatsbyLink)`
-	${baseStyle}
+	${baseTypographyStyle}
+	text-decoration: none;
+	&:hover,
+	&:active,
+	&:focus {
+		text-decoration: underline;
+	}
 `;
 
 export const Link = ({ to, children, className }: LinkProps) => {

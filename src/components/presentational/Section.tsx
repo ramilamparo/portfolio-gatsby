@@ -1,14 +1,21 @@
 import React, { ReactNode } from "react";
+import { Typography, TypographyVariant } from "./Typography";
 
 export interface SectionProps {
 	title: string;
+	titleVariant?: TypographyVariant;
 	children: ReactNode;
 	id?: string;
 }
-export const Section = ({ id, title, children }: SectionProps) => {
+export const Section = ({
+	id,
+	title,
+	titleVariant = "header1",
+	children
+}: SectionProps) => {
 	return (
 		<section id={id}>
-			<h1>{title}</h1>
+			<Typography variant={titleVariant}>{title}</Typography>
 			{children}
 		</section>
 	);

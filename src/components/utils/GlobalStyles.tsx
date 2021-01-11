@@ -16,8 +16,8 @@ const GlobalStylesComponent = createGlobalStyle`
 
 	body {
 		box-sizing: border-box;
-		padding: 3rem;
-		background-color:#404552
+		padding: 3rem 0 3rem 0;
+		background-color:#2f343f;
 	}
 `;
 
