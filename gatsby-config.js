@@ -1,8 +1,13 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
+require("dotenv").config({
+	path: `.env.${process.env.NODE_ENV}`
+});
+
+const { API_URL } = process.env;
+
+if (!API_URL) {
+	throw new Error("API_URL is not defined in environment!");
+}
+console.log(API_URL);
 
 module.exports = {
 	siteMetadata: {
@@ -19,15 +24,39 @@ module.exports = {
 		{
 			resolve: "gatsby-plugin-manifest",
 			options: {
-				name: "Ramil Amparo Portfolio",
-				short_name: "Ramil",
+				name: "Ram's Personal Website",
+				short_name: "Ram's Website",
 				start_url: "/",
 				background_color: "#070707",
 				theme_color: "#070707",
-				// Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-				// see https://developers.google.com/web/fundamentals/web-app-manifest/#display
 				display: "standalone",
-				icon: "src/assets/images/icon.png" // This path is relative to the root of the site.
+				icons: [
+					{
+						src: "public/android-chrome-192x192.png",
+						sizes: "192x192",
+						type: "image/png"
+					},
+					{
+						src: "public/android-chrome-512x512.png",
+						sizes: "512x512",
+						type: "image/png"
+					}
+				]
+			}
+		},
+		{
+			resolve: "gatsby-source-strapi",
+			options: {
+				apiURL: API_URL,
+				queryLimit: 1000, // Default to 100
+				contentTypes: [
+					"portfolios",
+					"skills",
+					"thoughts",
+					"work-histories",
+					"work-responsibilities"
+				],
+				singleTypes: ["about-page", "contact-page"]
 			}
 		},
 		/** Make google fonts with Roboto font and material icons available. */
@@ -43,7 +72,7 @@ module.exports = {
 		 */ {
 			resolve: "gatsby-plugin-layout",
 			options: {
-				component: require.resolve("./src/layouts/PageContainer.tsx")
+				component: require.resolve("./src/components/utils/PageContainer.tsx")
 			}
 		},
 		"gatsby-plugin-offline",

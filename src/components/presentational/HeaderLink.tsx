@@ -4,7 +4,7 @@ import { Link, LinkProps } from "./Link";
 
 export type HeaderLinkProps = LinkProps;
 
-const StyledLink = styled(Link)`
+const StyledHeaderLink = styled(Link)`
 	color: gray;
 	&:visited {
 		color: gray;
@@ -12,5 +12,5 @@ const StyledLink = styled(Link)`
 `;
 
 export const HeaderLink = (props: HeaderLinkProps) => {
-	return <StyledLink {...props} />;
+	return <StyledHeaderLink {...props} />;
 };

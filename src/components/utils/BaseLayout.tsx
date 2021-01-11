@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import { Header } from "../component/Header";
+import { NavBar } from "../containers/NavBar";
+import { Helmet } from "./Helmet";
 import { GlobalStyles } from "./GlobalStyles";
 
 export interface BaseLayoutProps {
@@ -9,7 +10,8 @@ export interface BaseLayoutProps {
 export const BaseLayout = ({ children }: BaseLayoutProps) => {
 	return (
 		<>
-			<Header />
+			<Helmet />
+			<NavBar />
 			{children}
 			<GlobalStyles />
 		</>
