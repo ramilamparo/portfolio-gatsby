@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { Header } from "../containers/NavBar";
 import { Helmet } from "./Helmet";
-import { GlobalStyles } from "./GlobalStyles";
+import "./GlobalStyles.css";
 
 export interface BaseLayoutProps {
 	children: ReactNode;
@@ -19,7 +19,6 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
 			<Helmet />
 			<Header />
 			{children}
-			<GlobalStyles />
 		</Container>
 	);
 };

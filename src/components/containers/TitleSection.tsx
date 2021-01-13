@@ -1,6 +1,5 @@
-import { Section } from "../presentational/Section";
-
 import React from "react";
+import { Section } from "../presentational/Section";
 import { Typography } from "../presentational/Typography";
 
 export const TitleSection = () => {

@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyQueryResponse } from "../../typings/utils";
+import { StrapiResponse } from "../../typings/utils";
 
-export interface ContactPageResponse {
+export interface StrapiContactPage {
 	id: string;
 	email: string;
 	githubLink: string;
@@ -12,23 +12,23 @@ export interface ContactPageResponse {
 }
 
 export const useStrapiContactPage = () => {
-	const query = useStaticQuery<GatsbyQueryResponse<ContactPageResponse>>(graphql`
+	const query = useStaticQuery<
+		StrapiResponse<"contactPage", StrapiContactPage>
+	>(graphql`
 		{
-			allStrapiContactPage {
-				edges {
-					node {
-						id
-						email
-						githubLink
-						mobileNumber
-						lat
-						lng
-						linkedInLink
-					}
+			strapi {
+				contactPage {
+					id
+					email
+					githubLink
+					mobileNumber
+					lat
+					lng
+					linkedInLink
 				}
 			}
 		}
 	`);
 
-	return query.allStrapiContactPage.edges[0].node;
+	return query.strapi.contactPage;
 };

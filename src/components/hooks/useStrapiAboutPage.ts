@@ -1,24 +1,23 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { GatsbyQueryResponse } from "../../typings/utils";
+import { StrapiResponse } from "../../typings/utils";
 
-export interface AboutPageResponse {
+export interface StrapiAboutPage {
 	id: string;
 	aboutMe: string;
 }
 
 export const useStrapiAboutPage = () => {
-	const query = useStaticQuery<GatsbyQueryResponse<AboutPageResponse>>(graphql`
+	const query = useStaticQuery<
+		StrapiResponse<"aboutPage", StrapiAboutPage>
+	>(graphql`
 		{
-			allStrapiAboutPage {
-				edges {
-					node {
-						id
-						aboutMe
-					}
+			strapi {
+				aboutPage {
+					aboutMe
 				}
 			}
 		}
 	`);
 
-	return query.allStrapiAboutPage.edges[0].node;
+	return query.strapi.aboutPage;
 };

@@ -1,36 +1,26 @@
-import React, { ReactText, useCallback } from "react";
+import React, { ComponentType, ReactNode, ReactText, useCallback } from "react";
 import styled, { css } from "styled-components";
 
 export type TypographyVariant =
 	| "header1"
 	| "header2"
+	| "header3"
 	| "subtitle1"
+	| "caption"
 	| "paragraph";
 
+export type OverrideTag = "h1" | "h2" | "h3" | "span" | "p";
+
 export interface TypographyProps {
-	children: ReactText;
+	children: ReactNode;
 	variant: TypographyVariant;
+	as?: OverrideTag;
+	className?: string;
 }
 
 export const baseTypographyStyle = css`
-	@font-face {
-		font-family: "Meslo";
-		src: url("/fonts/MesloLGM-Regular.ttf");
-	}
-	@font-face {
-		font-family: "Menlo";
-		src: url("/fonts/Menlo-Regular.ttf");
-	}
-	@font-face {
-		font-family: "SanFrancisco";
-		src: url("/fonts/System San Francisco Display Regular.ttf");
-	}
-
 	font-size: 1.4rem;
 	line-height: 2.8rem;
-	color: white;
-	font-family: Menlo, Meslo, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 const StyledHeading1 = styled.h1`
@@ -41,11 +31,19 @@ const StyledHeading1 = styled.h1`
 	margin: 1.2rem 0 1.2rem 0;
 `;
 
-const StyledHeading2 = styled.h1`
+const StyledHeading2 = styled.h2`
 	${baseTypographyStyle}
 	font-size: 2rem;
 	font-family: SanFrancisco;
 	color: #2bbc8a;
+	margin: 0.8rem 0 0.8rem 0;
+`;
+
+const StyledHeading3 = styled.h3`
+	${baseTypographyStyle}
+	font-size: 1.6rem;
+	font-family: Meslo;
+	color: white;
 	margin: 0.8rem 0 0.8rem 0;
 `;
 
@@ -56,14 +54,33 @@ const StyledSubtitle1 = styled.p`
 	font-family: SanFrancisco;
 `;
 
+const StyledCaption = styled.p`
+	${baseTypographyStyle}
+	color: #49505e;
+`;
+
 const StyledParagraph = styled.p`
 	${baseTypographyStyle}
 `;
 
-export const Typography = ({ children, variant }: TypographyProps) => {
+export const Typography = ({
+	className,
+	children,
+	as,
+	variant
+}: TypographyProps) => {
+	const getProps = useCallback(
+		(key: ReactText) => ({
+			key,
+			as,
+			className
+		}),
+		[]
+	);
+
 	const getSplitChildrenByLine = useCallback(() => {
-		if (typeof children === "number") {
-			return [String(children)];
+		if (typeof children !== "string") {
+			return [children];
 		}
 		return children
 			.split("\n")
@@ -71,55 +88,32 @@ export const Typography = ({ children, variant }: TypographyProps) => {
 			.filter((line) => line.length > 0);
 	}, [children]);
 
-	const renderHeading1 = useCallback(() => {
-		return (
-			<>
-				{getSplitChildrenByLine().map((line, index) => (
-					<StyledHeading1 key={line + index}>{line}</StyledHeading1>
-				))}
-			</>
-		);
-	}, [getSplitChildrenByLine]);
-
-	const renderHeading2 = useCallback(() => {
-		return (
-			<>
-				{getSplitChildrenByLine().map((line, index) => (
-					<StyledHeading2 key={line + index}>{line}</StyledHeading2>
-				))}
-			</>
-		);
-	}, [getSplitChildrenByLine]);
-
-	const renderSubtitle1 = useCallback(() => {
-		return (
-			<>
-				{getSplitChildrenByLine().map((line, index) => (
-					<StyledSubtitle1 key={line + index}>{line}</StyledSubtitle1>
-				))}
-			</>
-		);
-	}, [getSplitChildrenByLine]);
-
-	const renderParagraph = useCallback(() => {
-		return (
-			<>
-				{getSplitChildrenByLine().map((line, index) => (
-					<StyledParagraph key={line + index}>{line}</StyledParagraph>
-				))}
-			</>
-		);
-	}, [getSplitChildrenByLine]);
+	const renderText = useCallback(
+		(Component: ComponentType) => {
+			return (
+				<>
+					{getSplitChildrenByLine().map((line, index) => (
+						<Component {...getProps(index)}>{line}</Component>
+					))}
+				</>
+			);
+		},
+		[getSplitChildrenByLine]
+	);
 
 	switch (variant) {
 		case "header1":
-			return renderHeading1();
+			return renderText(StyledHeading1);
 		case "header2":
-			return renderHeading2();
+			return renderText(StyledHeading2);
+		case "header3":
+			return renderText(StyledHeading3);
 		case "subtitle1":
-			return renderSubtitle1();
+			return renderText(StyledSubtitle1);
 		case "paragraph":
-			return renderParagraph();
+			return renderText(StyledParagraph);
+		case "caption":
+			return renderText(StyledCaption);
 		default:
 			throw new Error(`Unknown variant ${variant}.`);
 	}
