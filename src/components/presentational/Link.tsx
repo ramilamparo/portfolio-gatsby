@@ -9,7 +9,7 @@ export interface LinkProps {
 	className?: string;
 }
 
-const StyledLink = styled(GatsbyLink)`
+const StyledLink = styled.a`
 	${baseTypographyStyle}
 	text-decoration: none;
 	&:hover,
@@ -19,9 +19,22 @@ const StyledLink = styled(GatsbyLink)`
 	}
 `;
 
+const isUrlSameDomainRegexp = /\/^/;
+
+const isUrlSameDomain = (url: string) => {
+	return isUrlSameDomainRegexp.test(url);
+};
+
 export const Link = ({ to, children, className }: LinkProps) => {
+	if (isUrlSameDomain(to)) {
+		return (
+			<StyledLink className={className} to={to} as={GatsbyLink}>
+				{children}
+			</StyledLink>
+		);
+	}
 	return (
-		<StyledLink className={className} to={to}>
+		<StyledLink className={className} href={to}>
 			{children}
 		</StyledLink>
 	);

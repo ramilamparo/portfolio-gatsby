@@ -21,6 +21,7 @@ export interface TypographyProps {
 export const baseTypographyStyle = css`
 	font-size: 1.4rem;
 	line-height: 2.8rem;
+	color: white;
 `;
 
 const StyledHeading1 = styled.h1`
@@ -43,7 +44,6 @@ const StyledHeading3 = styled.h3`
 	${baseTypographyStyle}
 	font-size: 1.6rem;
 	font-family: Meslo;
-	color: white;
 	margin: 0.8rem 0 0.8rem 0;
 `;
 

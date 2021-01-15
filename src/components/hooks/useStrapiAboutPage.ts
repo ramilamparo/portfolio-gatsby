@@ -6,9 +6,15 @@ export interface StrapiAboutPage {
 	aboutMe: string;
 }
 
-export const useStrapiAboutPage = () => {
+export interface SendMailOptions {
+	subject: string;
+	replyTo: string;
+	body: string;
+}
+
+export const useStrapiAboutPage = (): StrapiAboutPage => {
 	const query = useStaticQuery<
-		StrapiResponse<"aboutPage", StrapiAboutPage>
+		StrapiResponse<"aboutPage", Pick<StrapiAboutPage, "id" | "aboutMe">>
 	>(graphql`
 		{
 			strapi {

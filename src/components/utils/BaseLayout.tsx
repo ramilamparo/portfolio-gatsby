@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Header } from "../containers/NavBar";
 import { Helmet } from "./Helmet";
 import "./GlobalStyles.css";
-
 export interface BaseLayoutProps {
 	children: ReactNode;
 }

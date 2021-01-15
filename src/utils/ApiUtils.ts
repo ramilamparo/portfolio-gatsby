@@ -14,7 +14,7 @@ export abstract class ApiUtils {
 
 		if (media.formats) {
 			const { large, medium, small, thumbnail } = media.formats;
-			thumbnailUrl = thumbnail.url;
+			thumbnailUrl = ApiUtils.getFullMediaUrl(thumbnail.url);
 			smallUrl = ApiUtils.getFullMediaUrl(small.url);
 			mediumUrl = ApiUtils.getFullMediaUrl(medium.url);
 			largeUrl = ApiUtils.getFullMediaUrl(large.url);

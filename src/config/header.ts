@@ -6,12 +6,12 @@ const Home: LinkItem = {
 };
 
 const About: LinkItem = {
-	to: "#about",
+	to: "/#about",
 	label: "About"
 };
 
 const Projects: LinkItem = {
-	to: "#projects",
+	to: "/#projects",
 	label: "Projects"
 };
 

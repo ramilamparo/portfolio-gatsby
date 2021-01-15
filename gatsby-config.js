@@ -44,6 +44,12 @@ module.exports = {
 			}
 		},
 		{
+			resolve: "gatsby-plugin-apollo",
+			options: {
+				uri: `${API_URL}/graphql`
+			}
+		},
+		{
 			resolve: "gatsby-source-graphql",
 			options: {
 				// Arbitrary name for the remote schema Query type

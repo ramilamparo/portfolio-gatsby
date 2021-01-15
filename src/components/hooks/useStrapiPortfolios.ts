@@ -10,15 +10,17 @@ interface StrapiPortfolio {
 	id: string;
 	title: string;
 	description: string;
-	companyName: string;
 	screenshots: StrapiMedia[];
+	githubLink: string | null;
+	demoLink: string | null;
 }
 
 export interface AllStrapiPortfoliosResponse {
 	id: string;
 	title: string;
 	description: string;
-	companyName: string | null;
+	githubLink: string | null;
+	demoLink: string | null;
 	screenshots: SimplifiedStrapiMedia[];
 }
 
@@ -36,6 +38,8 @@ export const useStrapiPortfolios = (): AllStrapiPortfoliosResponse[] => {
 						formats
 						url
 					}
+					githubLink
+					demoLink
 				}
 			}
 		}
@@ -44,10 +48,11 @@ export const useStrapiPortfolios = (): AllStrapiPortfoliosResponse[] => {
 	return query.strapi.portfolios.map((portfolio) => ({
 		id: portfolio.id,
 		title: portfolio.title,
-		companyName: portfolio.companyName,
 		description: portfolio.description,
 		screenshots: portfolio.screenshots.map((screenshot) =>
 			ApiUtils.getMediaUrls(screenshot)
-		)
+		),
+		demoLink: portfolio.demoLink,
+		githubLink: portfolio.githubLink
 	}));
 };
