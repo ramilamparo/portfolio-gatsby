@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { baseTypographyStyle } from "./Typography";
 
 export interface IconProps {
-	srLabel: string;
+	srLabel?: string;
 	icon: ComponentType<{ className?: string }>;
 	className?: string;
 }
@@ -25,9 +25,11 @@ export const Icon = ({ srLabel, className, icon: Component }: IconProps) => {
 	return (
 		<>
 			<StyledIconComponent as={Component} className={className} />
-			<StyledScreenReaderLabel className="sr-only">
-				{srLabel}
-			</StyledScreenReaderLabel>
+			{srLabel && (
+				<StyledScreenReaderLabel className="sr-only">
+					{srLabel}
+				</StyledScreenReaderLabel>
+			)}
 		</>
 	);
 };

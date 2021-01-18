@@ -10,7 +10,7 @@ export interface StrapiMediaFormat {
 	url: string;
 }
 export interface StrapiMedia {
-	formats: Record<StrapiMediaType, StrapiMediaFormat> | null;
+	formats: Record<StrapiMediaType, StrapiMediaFormat | undefined> | null;
 	url: string;
 }
 

@@ -6,7 +6,7 @@ import {
 } from "../../typings/utils";
 import { ApiUtils } from "../../utils/ApiUtils";
 
-interface StrapiPortfolio {
+export interface StrapiPortfolio {
 	id: string;
 	title: string;
 	description: string;
@@ -15,7 +15,7 @@ interface StrapiPortfolio {
 	demoLink: string | null;
 }
 
-export interface AllStrapiPortfoliosResponse {
+export interface UseStrapiPortfolioData {
 	id: string;
 	title: string;
 	description: string;
@@ -24,7 +24,7 @@ export interface AllStrapiPortfoliosResponse {
 	screenshots: SimplifiedStrapiMedia[];
 }
 
-export const useStrapiPortfolios = (): AllStrapiPortfoliosResponse[] => {
+export const useStrapiPortfolios = (): UseStrapiPortfolioData[] => {
 	const query = useStaticQuery<
 		StrapiResponse<"portfolios", StrapiPortfolio[]>
 	>(graphql`

@@ -10,13 +10,17 @@ export interface WorkHistoryListProps {
 }
 
 const StyledIconTypography = styled(IconTypography)`
-	margin-top: 5rem;
+	margin: 3rem 0 1rem 0;
 `;
 
 export const WorkHistoryList = ({ workHistories }: WorkHistoryListProps) => {
 	return (
 		<>
-			<StyledIconTypography icon={IoBriefcase} variant="header3">
+			<StyledIconTypography
+				srLabel="Work Experience"
+				icon={IoBriefcase}
+				variant="header3"
+			>
 				Work Experience
 			</StyledIconTypography>
 			{workHistories

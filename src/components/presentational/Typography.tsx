@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactNode, ReactText, useCallback } from "react";
+import React, { ComponentType, ReactNode, useCallback } from "react";
 import styled, { css } from "styled-components";
 
 export type TypographyVariant =
@@ -16,16 +16,42 @@ export interface TypographyProps {
 	variant: TypographyVariant;
 	as?: OverrideTag;
 	className?: string;
+	maxLines?: number;
 }
 
+const LINE_HEIGHT = "2.8rem";
+
 export const baseTypographyStyle = css`
+	position: relative;
 	font-size: 1.4rem;
-	line-height: 2.8rem;
+	line-height: ${LINE_HEIGHT};
 	color: white;
 `;
 
+const textOverflow = css<TypographyProps>`
+	overflow: hidden;
+	text-overflow: ellipsis;
+	position: relative;
+	height: calc(${LINE_HEIGHT} * ${(props) => props.maxLines});
+	padding-right: 1rem; /* space for ellipsis */
+	&::after {
+		content: "";
+		text-align: right;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 50%;
+		height: ${LINE_HEIGHT};
+		background: linear-gradient(to right, transparent, #18181a 70%);
+	}
+`;
+
+const handleMaxLines = (props: TypographyProps) =>
+	props.maxLines ? textOverflow : "";
+
 const StyledHeading1 = styled.h1`
 	${baseTypographyStyle}
+	${handleMaxLines}
 	font-size: 3rem;
 	font-family: SanFrancisco;
 	color: #2bbc8a;
@@ -34,6 +60,7 @@ const StyledHeading1 = styled.h1`
 
 const StyledHeading2 = styled.h2`
 	${baseTypographyStyle}
+	${handleMaxLines}
 	font-size: 2rem;
 	font-family: SanFrancisco;
 	color: #2bbc8a;
@@ -42,6 +69,7 @@ const StyledHeading2 = styled.h2`
 
 const StyledHeading3 = styled.h3`
 	${baseTypographyStyle}
+	${handleMaxLines}
 	font-size: 1.6rem;
 	font-family: Meslo;
 	margin: 0.8rem 0 0.8rem 0;
@@ -49,6 +77,7 @@ const StyledHeading3 = styled.h3`
 
 const StyledSubtitle1 = styled.p`
 	${baseTypographyStyle}
+	${handleMaxLines}
 	color: #49505e;
 	font-size: 2rem;
 	font-family: SanFrancisco;
@@ -56,50 +85,39 @@ const StyledSubtitle1 = styled.p`
 
 const StyledCaption = styled.p`
 	${baseTypographyStyle}
+	${handleMaxLines}
 	color: #49505e;
 `;
 
 const StyledParagraph = styled.p`
 	${baseTypographyStyle}
+	${handleMaxLines}
+	white-space: pre-line;
 `;
 
 export const Typography = ({
 	className,
 	children,
 	as,
-	variant
+	variant,
+	maxLines
 }: TypographyProps) => {
 	const getProps = useCallback(
-		(key: ReactText) => ({
-			key,
+		() => ({
 			as,
-			className
+			className,
+			maxLines
 		}),
-		[]
+		[as, className]
 	);
 
-	const getSplitChildrenByLine = useCallback(() => {
-		if (typeof children !== "string") {
-			return [children];
-		}
-		return children
-			.split("\n")
-			.map((line) => line.trim())
-			.filter((line) => line.length > 0);
-	}, [children]);
-
-	const renderText = useCallback(
-		(Component: ComponentType) => {
-			return (
-				<>
-					{getSplitChildrenByLine().map((line, index) => (
-						<Component {...getProps(index)}>{line}</Component>
-					))}
-				</>
-			);
-		},
-		[getSplitChildrenByLine]
-	);
+	const renderText = useCallback((Component: ComponentType) => {
+		return (
+			<>
+				<Component {...getProps()}>{children}</Component>
+			</>
+		);
+	}, []);
 
 	switch (variant) {
 		case "header1":
