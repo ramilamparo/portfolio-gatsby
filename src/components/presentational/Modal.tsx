@@ -26,22 +26,23 @@ export const Modal = ({ open, onDismiss, children }: ModalProps) => {
 	const uniqueId = useRef(uuidv4());
 
 	useEffect(() => {
-		document.body.appendChild(node.current);
+		const childNode = node.current;
+		document.body.appendChild(childNode);
 
 		return () => {
-			document.body.removeChild(node.current);
+			document.body.removeChild(childNode);
 		};
 	}, [node]);
 
 	const handleClick = useCallback(
 		(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-			const targetId = (e.target as any).id;
+			const targetId = ((e.target as unknown) as { id?: string }).id;
 
 			if (targetId && targetId === uniqueId.current) {
 				onDismiss();
 			}
 		},
-		[uniqueId.current]
+		[onDismiss]
 	);
 
 	const getChildren = useCallback(() => {
@@ -53,7 +54,7 @@ export const Modal = ({ open, onDismiss, children }: ModalProps) => {
 				{children}
 			</StyledModal>
 		);
-	}, [open, onDismiss, children]);
+	}, [open, handleClick, children]);
 
 	return createPortal(getChildren(), node.current);
 };

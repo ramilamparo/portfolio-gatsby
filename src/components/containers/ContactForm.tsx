@@ -57,7 +57,7 @@ export const ContactForm = () => {
 			setModalState(newModalState);
 		}
 		setIsLoading(false);
-	}, [values, contact]);
+	}, [values, getModalState, validateCaptcha, contact]);
 
 	const dismissModal = useCallback(() => {
 		setModalState({ ...modalState, open: false });

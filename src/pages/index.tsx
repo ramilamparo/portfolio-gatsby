@@ -3,7 +3,7 @@ import { AboutSection } from "../components/containers/AboutSection";
 import { ProjectsSection } from "../components/containers/ProjectsSection";
 import { TitleSection } from "../components/containers/TitleSection";
 
-export default () => {
+const PageHome = () => {
 	return (
 		<>
 			<TitleSection />
@@ -12,3 +12,5 @@ export default () => {
 		</>
 	);
 };
+
+export default PageHome;

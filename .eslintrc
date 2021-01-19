@@ -1,10 +1,13 @@
 {
 	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint"],
 	"extends": [
-		"eslint-config-blvd/react",
 		"prettier/@typescript-eslint",
 		"prettier/react",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"react-app",
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended"
 	],
 	"parserOptions": {
 		"ecmaVersion": 2018,
@@ -18,5 +21,14 @@
 			"version": "detect"
 		}
 	},
-	"rules": {}
+	"rules": {
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{
+				"args": "after-used",
+				"ignoreRestSiblings": true
+			}
+		]
+	}
 }

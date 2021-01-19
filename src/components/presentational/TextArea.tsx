@@ -43,7 +43,7 @@ export const TextArea = ({
 	return (
 		<Field<string> defaultValue="" name={id}>
 			{({ value, setFieldValue }) => (
-				<StyledContainer>
+				<StyledContainer className={className}>
 					<StyledLabel htmlFor={id}>{label}</StyledLabel>
 					<StyledTextArea
 						{...textAreaProps}

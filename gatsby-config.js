@@ -76,6 +76,7 @@ module.exports = {
 				component: require.resolve("./src/components/utils/PageContainer.tsx")
 			}
 		},
+		"gatsby-plugin-eslint",
 		"gatsby-plugin-offline",
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-typescript"

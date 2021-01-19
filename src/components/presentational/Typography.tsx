@@ -108,16 +108,19 @@ export const Typography = ({
 			className,
 			maxLines
 		}),
-		[as, className]
+		[as, className, maxLines]
 	);
 
-	const renderText = useCallback((Component: ComponentType) => {
-		return (
-			<>
-				<Component {...getProps()}>{children}</Component>
-			</>
-		);
-	}, []);
+	const renderText = useCallback(
+		(Component: ComponentType) => {
+			return (
+				<>
+					<Component {...getProps()}>{children}</Component>
+				</>
+			);
+		},
+		[children, getProps]
+	);
 
 	switch (variant) {
 		case "header1":

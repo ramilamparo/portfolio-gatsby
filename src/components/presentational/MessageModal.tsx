@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Modal, ModalProps } from "./Modal";
 import styled from "styled-components";
 import { Button } from "./Button";
@@ -30,16 +30,6 @@ export const MessageModal = ({
 	title,
 	children
 }: MessageModalProps) => {
-	const node = useRef(document.createElement("div"));
-
-	useEffect(() => {
-		document.body.appendChild(node.current);
-
-		return () => {
-			document.body.removeChild(node.current);
-		};
-	}, [node]);
-
 	return (
 		<Modal onDismiss={onDismiss} open={open}>
 			<ModalContentContainer>

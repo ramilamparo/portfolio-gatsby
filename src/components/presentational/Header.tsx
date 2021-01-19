@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { NavBar, NavBarProps } from "./NavBar";
 import { WebsiteLogo } from "./WebsiteLogo";
 
-export interface HeaderProps extends NavBarProps {}
+export type HeaderProps = NavBarProps;
 
 const StyledDiv = styled.div`
 	display: flex;

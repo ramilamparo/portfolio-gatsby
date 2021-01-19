@@ -4,7 +4,7 @@ import { ContactForm } from "../components/containers/ContactForm";
 import { ContactLinks } from "../components/containers/ContactLinks";
 import { siteKey } from "../config/recaptcha";
 
-export default () => {
+const PageContact = () => {
 	return (
 		<>
 			<ContactLinks />
@@ -14,3 +14,5 @@ export default () => {
 		</>
 	);
 };
+
+export default PageContact;
