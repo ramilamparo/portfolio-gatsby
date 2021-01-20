@@ -1,4 +1,5 @@
-import React, { FormEvent, useCallback } from "react";
+import type { FormEvent } from "react";
+import React, { useCallback } from "react";
 import { FormProvider } from "react-form";
 import styled, { css } from "styled-components";
 import { Breakpoints } from "../../utils/styles/breakpoints";

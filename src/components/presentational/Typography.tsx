@@ -1,4 +1,5 @@
-import React, { ComponentType, ReactNode, useCallback } from "react";
+import type { ComponentType, ReactNode } from "react";
+import React, { useCallback } from "react";
 import styled, { css } from "styled-components";
 
 export type TypographyVariant =

@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal, ModalProps } from "./Modal";
+import type { ModalProps } from "./Modal";
+import { Modal } from "./Modal";
 import styled from "styled-components";
 import { Button } from "./Button";
 import { Typography } from "./Typography";

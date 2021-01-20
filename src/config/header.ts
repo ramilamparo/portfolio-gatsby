@@ -1,4 +1,4 @@
-import { LinkItem } from "../components/presentational/NavBar";
+import type { LinkItem } from "../components/presentational/NavBar";
 
 const Home: LinkItem = {
 	to: "/",

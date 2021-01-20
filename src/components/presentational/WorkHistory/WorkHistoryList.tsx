@@ -1,7 +1,8 @@
 import React from "react";
 import { DateUtils } from "../../../utils/DateUtils";
 import { IoBriefcase } from "react-icons/io5";
-import { WorkHistory, WorkHistoryProps } from "./WorkHistory";
+import type { WorkHistoryProps } from "./WorkHistory";
+import { WorkHistory } from "./WorkHistory";
 import styled from "styled-components";
 import { IconTypography } from "../IconTypography";
 

@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { StrapiResponse } from "../../typings/utils";
+import type { StrapiResponse } from "../../typings/utils";
 import { gql, useMutation } from "@apollo/client";
 import { useCallback } from "react";
 export interface StrapiContactPage {

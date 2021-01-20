@@ -1,5 +1,5 @@
 import { url } from "../config/api";
-import { SimplifiedStrapiMedia, StrapiMedia } from "../typings/utils";
+import type { SimplifiedStrapiMedia, StrapiMedia } from "../typings/utils";
 
 export abstract class ApiUtils {
 	public static getFullMediaUrl = (path: string) => {

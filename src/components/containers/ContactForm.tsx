@@ -1,14 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useFormState } from "react-form";
+import type { SendMailResponse } from "../hooks/useStrapiContactPage";
 import { useStrapiContactPage } from "../hooks/useStrapiContactPage";
-import {
-	ContactForm as ContactFormPresentational,
-	ContactFormValues
-} from "../presentational/ContactForm";
+import type { ContactFormValues } from "../presentational/ContactForm";
+import { ContactForm as ContactFormPresentational } from "../presentational/ContactForm";
 import { MessageModal } from "../presentational/MessageModal";
 import { Typography } from "../presentational/Typography";
-import { SendMailResponse } from "../hooks/useStrapiContactPage";
 
 interface ModalState {
 	title: string;

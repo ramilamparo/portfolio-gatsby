@@ -1,4 +1,5 @@
-import React, { ReactNode, useCallback, useEffect, useRef } from "react";
+import type { ReactNode } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";

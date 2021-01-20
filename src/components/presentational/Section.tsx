@@ -1,6 +1,8 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Typography, TypographyVariant } from "./Typography";
+import type { TypographyVariant } from "./Typography";
+import { Typography } from "./Typography";
 
 export interface SectionProps {
 	title: string;

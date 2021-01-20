@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, LinkProps } from "./Link";
+import type { LinkProps } from "./Link";
+import { Link } from "./Link";
 
 export type HeaderLinkProps = LinkProps;
 

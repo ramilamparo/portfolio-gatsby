@@ -1,4 +1,5 @@
-import React, { ComponentType, useCallback } from "react";
+import type { ComponentType } from "react";
+import React, { useCallback } from "react";
 import { IoLogoGithub, IoGlobe } from "react-icons/io5";
 import styled from "styled-components";
 import { Icon } from "../Icon";

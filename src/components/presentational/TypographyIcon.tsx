@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon, IconProps } from "./Icon";
+import type { IconProps } from "./Icon";
+import { Icon } from "./Icon";
 
 export type TypographyIconProps = IconProps;
 

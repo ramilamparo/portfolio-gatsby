@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { NavBar, NavBarProps } from "./NavBar";
+import type { NavBarProps } from "./NavBar";
+import { NavBar } from "./NavBar";
 import { WebsiteLogo } from "./WebsiteLogo";
 
 export type HeaderProps = NavBarProps;

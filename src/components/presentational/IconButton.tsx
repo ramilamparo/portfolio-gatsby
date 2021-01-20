@@ -1,4 +1,5 @@
-import React, { ComponentType } from "react";
+import type { ComponentType } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button } from "./Button";
 import { SrLabel } from "./SrLabel";

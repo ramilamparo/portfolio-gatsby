@@ -1,10 +1,11 @@
-import React, { ComponentType } from "react";
+import type { ComponentType } from "react";
+import React from "react";
 import styled from "styled-components";
 import { SrLabel } from "./SrLabel";
 import { baseTypographyStyle } from "./Typography";
 
 export interface IconProps {
-	srLabel?: string;
+	srLabel: string;
 	icon: ComponentType<{ className?: string }>;
 	className?: string;
 }

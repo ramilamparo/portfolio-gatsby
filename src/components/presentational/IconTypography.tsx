@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon, IconProps } from "./Icon";
-import { TypographyProps, Typography } from "./Typography";
+import type { IconProps } from "./Icon";
+import { Icon } from "./Icon";
+import type { TypographyProps } from "./Typography";
+import { Typography } from "./Typography";
 
 export interface IconTypographyProps extends TypographyProps, IconProps {}
 

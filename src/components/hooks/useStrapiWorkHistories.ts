@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import {
+import type {
 	SimplifiedStrapiMedia,
 	StrapiMedia,
 	StrapiResponse

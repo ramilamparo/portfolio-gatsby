@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { ImageItem, ImageSlideshow } from "../ImageSlideshow";
-import {
-	ProjectDescription,
-	ProjectDescriptionProps
-} from "./ProjectDescription";
+import type { ImageItem } from "../ImageSlideshow";
+import { ImageSlideshow } from "../ImageSlideshow";
+import type { ProjectDescriptionProps } from "./ProjectDescription";
+import { ProjectDescription } from "./ProjectDescription";
 
 export interface ProjectProps extends ProjectDescriptionProps {
 	thumbnails: ImageItem[];
