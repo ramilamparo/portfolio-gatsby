@@ -16,7 +16,16 @@ interface PortfolioItemProps {
 }
 
 const StyledIconLink = styled(IconLink)`
-	font-size: 2rem;
+	margin-left: 1rem;
+	& .icon {
+		font-size: 2rem;
+		vertical-align: middle;
+	}
+`;
+
+const TitleContainer = styled.div`
+	display: flex;
+	align-items: center;
 `;
 
 const PortfolioItem = ({ data }: PortfolioItemProps) => {
@@ -41,9 +50,11 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
 					alt: `${data.strapi.portfolio.title} screenshot ${index + 1}`
 				}))}
 			/>
-			<Typography variant="header1">{data.strapi.portfolio.title}</Typography>
-			{renderLink(data.strapi.portfolio.githubLink, "Github Link", IoLogoGithub)}
-			{renderLink(data.strapi.portfolio.demoLink, "Demo Link", IoGlobe)}
+			<TitleContainer>
+				<Typography variant="header1">{data.strapi.portfolio.title}</Typography>
+				{renderLink(data.strapi.portfolio.githubLink, "Github Link", IoLogoGithub)}
+				{renderLink(data.strapi.portfolio.demoLink, "Demo Link", IoGlobe)}
+			</TitleContainer>
 			<Typography variant="paragraph">
 				{data.strapi.portfolio.description}
 			</Typography>
