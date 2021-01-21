@@ -2,10 +2,10 @@ require("dotenv").config({
 	path: `.env.${process.env.NODE_ENV}`
 });
 
-const { API_URL } = process.env;
+const { GATSBY_API_URL } = process.env;
 
-if (!API_URL) {
-	throw new Error("API_URL is not defined in environment!");
+if (!GATSBY_API_URL) {
+	throw new Error("GATSBY_API_URL is not defined in environment!");
 }
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
 		{
 			resolve: "gatsby-plugin-apollo",
 			options: {
-				uri: `${API_URL}/graphql`
+				uri: `${GATSBY_API_URL}/graphql`
 			}
 		},
 		{
@@ -57,7 +57,7 @@ module.exports = {
 				// Field under which the remote schema will be accessible. You'll use this in your Gatsby query
 				fieldName: "strapi",
 				// Url to query from
-				url: `${API_URL}/graphql`
+				url: `${GATSBY_API_URL}/graphql`
 			}
 		},
 		/** Make google fonts with Roboto font and material icons available. */

@@ -23,15 +23,21 @@ const StyledModal = styled.div`
 `;
 
 export const Modal = ({ open, onDismiss, children }: ModalProps) => {
-	const node = useRef(document.createElement("div"));
+	const node = useRef<HTMLDivElement>();
+
 	const uniqueId = useRef(uuidv4());
 
 	useEffect(() => {
-		const childNode = node.current;
-		document.body.appendChild(childNode);
+		if (typeof window !== "undefined" && window.document) {
+			node.current = document.createElement("div");
+		}
+	}, []);
 
+	useEffect(() => {
+		const childNode = node.current;
+		childNode && document.body.appendChild(childNode);
 		return () => {
-			document.body.removeChild(childNode);
+			childNode && document.body.removeChild(childNode);
 		};
 	}, [node]);
 
@@ -57,5 +63,8 @@ export const Modal = ({ open, onDismiss, children }: ModalProps) => {
 		);
 	}, [open, handleClick, children]);
 
-	return createPortal(getChildren(), node.current);
+	if (node.current) {
+		return createPortal(getChildren(), node.current);
+	}
+	return null;
 };

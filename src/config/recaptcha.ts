@@ -1,3 +1,5 @@
-const { GATSBY_CAPTCHA_SITE_KEY } = process.env;
+if (!process.env.GATSBY_CAPTCHA_SITE_KEY) {
+	throw new Error("GATSBY_CAPTCHA_SITE_KEY is not defined.");
+}
 
-export const siteKey = GATSBY_CAPTCHA_SITE_KEY;
+export const siteKey = process.env.GATSBY_CAPTCHA_SITE_KEY;
