@@ -1,7 +1,7 @@
-const { API_URL } = process.env;
+const { GATSBY_API_URL } = process.env;
 
-if (!API_URL) {
+if (!GATSBY_API_URL) {
 	throw new Error("API_URL is not defined");
 }
 
-export const url = API_URL;
+export const url = GATSBY_API_URL;
