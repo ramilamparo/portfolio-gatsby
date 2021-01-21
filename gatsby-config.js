@@ -2,7 +2,7 @@ require("dotenv").config({
 	path: `.env.${process.env.NODE_ENV}`
 });
 
-const { GATSBY_API_URL } = process.env;
+const { GATSBY_API_URL, GATSBY_BROWSER_API_URL } = process.env;
 
 if (!GATSBY_API_URL) {
 	throw new Error("GATSBY_API_URL is not defined in environment!");
@@ -46,7 +46,7 @@ module.exports = {
 		{
 			resolve: "gatsby-plugin-apollo",
 			options: {
-				uri: `${GATSBY_API_URL}/graphql`
+				uri: `${GATSBY_BROWSER_API_URL}/graphql`
 			}
 		},
 		{
