@@ -5,6 +5,7 @@ import { Header } from "../containers/NavBar";
 import { Helmet } from "./Helmet";
 import "./GlobalStyles.css";
 import { Footer } from "../presentational/Footer";
+import { Breakpoints } from "../../utils/styles/breakpoints";
 export interface BaseLayoutProps {
 	children: ReactNode;
 }
@@ -17,6 +18,10 @@ const Container = styled.div`
 	height: 100vh;
 	justify-content: space-between;
 	padding: 3rem 0;
+	@media (${Breakpoints.PHONE_ONLY}) {
+		width: 100%;
+		padding: 3rem;
+	}
 `;
 
 export const BaseLayout = ({ children }: BaseLayoutProps) => {
