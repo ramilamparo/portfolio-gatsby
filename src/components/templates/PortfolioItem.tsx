@@ -10,22 +10,32 @@ import { Helmet } from "../utils/Helmet";
 import { ImageCarousel } from "../presentational/ImageCarousel";
 import { Typography } from "../presentational/Typography";
 import { IconLink } from "../presentational/IconLink";
+import { Breakpoints } from "../../utils/styles/breakpoints";
 
 interface PortfolioItemProps {
 	data: StrapiResponse<"portfolio", StrapiPortfolio>;
 }
 
 const StyledIconLink = styled(IconLink)`
-	margin-left: 1rem;
 	& .icon {
 		font-size: 2rem;
 		vertical-align: middle;
+	}
+	margin-left: 1rem;
+	@media (${Breakpoints.PHONE_ONLY}) {
+		margin-right: 1rem;
 	}
 `;
 
 const TitleContainer = styled.div`
 	display: flex;
 	align-items: center;
+
+	@media (${Breakpoints.PHONE_ONLY}) {
+		flex-direction: column;
+		align-items: flex-start;
+		margin-bottom: 1rem;
+	}
 `;
 
 const PortfolioItem = ({ data }: PortfolioItemProps) => {
@@ -52,8 +62,10 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
 			/>
 			<TitleContainer>
 				<Typography variant="header1">{data.strapi.portfolio.title}</Typography>
-				{renderLink(data.strapi.portfolio.githubLink, "Github Link", IoLogoGithub)}
-				{renderLink(data.strapi.portfolio.demoLink, "Demo Link", IoGlobe)}
+				<div>
+					{renderLink(data.strapi.portfolio.githubLink, "Github Link", IoLogoGithub)}
+					{renderLink(data.strapi.portfolio.demoLink, "Demo Link", IoGlobe)}
+				</div>
 			</TitleContainer>
 			<Typography variant="paragraph">
 				{data.strapi.portfolio.description}

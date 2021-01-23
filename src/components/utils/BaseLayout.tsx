@@ -20,7 +20,7 @@ const Container = styled.div`
 	padding: 3rem 0;
 	@media (${Breakpoints.PHONE_ONLY}) {
 		width: 100%;
-		padding: 3rem;
+		padding: 2rem;
 	}
 `;
 

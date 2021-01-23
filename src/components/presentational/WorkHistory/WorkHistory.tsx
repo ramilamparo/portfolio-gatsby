@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Typography } from "../Typography";
 import { WorkDate } from "./WorkDate";
 import { Markdown } from "../Markdown";
+import { Breakpoints } from "../../../utils/styles/breakpoints";
 
 export interface WorkHistoryProps {
 	companyName: string;
@@ -32,6 +33,9 @@ const Container = styled.div`
 const WorkHistoryHeader = styled.div`
 	display: flex;
 	margin-bottom: -1rem;
+	@media (${Breakpoints.PHONE_ONLY}) {
+		flex-direction: column;
+	}
 `;
 
 const WorkHistoryContainer = styled.div``;
