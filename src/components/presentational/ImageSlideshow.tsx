@@ -10,6 +10,7 @@ export interface ImageItem {
 export interface ImageSlideshowProps {
 	images: ImageItem[];
 	className?: string;
+	pause?: boolean;
 }
 
 const VISIBLE_DURATION = 5;
@@ -30,9 +31,14 @@ const slideshowAnimation = keyframes`
 	}
 `;
 
-const StyledImage = styled.img<{ shouldFadeIn: boolean; fadeDuration: number }>`
-	opacity: 0;
-	animation-name: ${(props) => props.shouldFadeIn && slideshowAnimation};
+const StyledImage = styled.img<{
+	shouldFadeIn: boolean;
+	fadeDuration: number;
+	permanent?: boolean;
+}>`
+	opacity: ${(props) => (props.permanent ? "1" : "0")};
+	animation-name: ${(props) =>
+		!props.permanent && props.shouldFadeIn && slideshowAnimation};
 	animation-duration: 5s;
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
@@ -48,11 +54,15 @@ const StyledImageContainer = styled.div`
 	position: relative;
 `;
 
-export const ImageSlideshow = ({ images, className }: ImageSlideshowProps) => {
+export const ImageSlideshow = ({
+	images,
+	className,
+	pause
+}: ImageSlideshowProps) => {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 	const incrementImageIndex = useCallback(() => {
-		if (images.length > 0) {
+		if (!pause && images.length > 1) {
 			const reachedMaxLength = images.length - 1 === currentImageIndex;
 			if (reachedMaxLength) {
 				setCurrentImageIndex(0);
@@ -60,7 +70,7 @@ export const ImageSlideshow = ({ images, className }: ImageSlideshowProps) => {
 				setCurrentImageIndex(currentImageIndex + 1);
 			}
 		}
-	}, [currentImageIndex, images]);
+	}, [currentImageIndex, images, pause]);
 
 	const shouldFadeIn = useCallback(
 		(imageIndex: number) => {
@@ -74,6 +84,7 @@ export const ImageSlideshow = ({ images, className }: ImageSlideshowProps) => {
 		return images.map((props, index) => {
 			return (
 				<StyledImage
+					permanent={images.length <= 1}
 					fadeDuration={FADE_DURATION}
 					shouldFadeIn={shouldFadeIn(index)}
 					key={props.src + props.alt}

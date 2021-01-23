@@ -14,7 +14,7 @@ const ProjectContainer = styled.div`
 `;
 
 const StyledImageSlideshow = styled(ImageSlideshow)`
-	flex-basis: 70rem;
+	flex-basis: 24rem;
 	height: 15rem;
 	margin-right: 5rem;
 `;
