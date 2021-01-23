@@ -4,6 +4,7 @@ import { IoLogoGithub, IoGlobe } from "react-icons/io5";
 import styled from "styled-components";
 import { Icon } from "../Icon";
 import { Link } from "../Link";
+import { Markdown } from "../Markdown";
 import { Typography } from "../Typography";
 
 export interface ProjectDescriptionProps {
@@ -62,9 +63,7 @@ export const ProjectDescription = ({
 	return (
 		<div className={className}>
 			<Typography variant="header3">{title}</Typography>
-			<Typography variant="paragraph" maxLines={3}>
-				{description}
-			</Typography>
+			<Markdown maxLines={3}>{description}</Markdown>
 			<StyledLinks>
 				{renderIcon(IoLogoGithub, "GitHub", githubLink)}
 				{renderIcon(IoGlobe, "Demo", demoLink)}

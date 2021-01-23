@@ -29,7 +29,7 @@ export const baseTypographyStyle = css`
 	color: white;
 `;
 
-const textOverflow = css<TypographyProps>`
+const textOverflow = css<Pick<TypographyProps, "maxLines">>`
 	overflow: hidden;
 	text-overflow: ellipsis;
 	position: relative;
@@ -47,53 +47,74 @@ const textOverflow = css<TypographyProps>`
 	}
 `;
 
-const handleMaxLines = (props: TypographyProps) =>
+export const handleMaxLines = (props: Pick<TypographyProps, "maxLines">) =>
 	props.maxLines ? textOverflow : "";
 
+export const styles = {
+	heading1: css`
+		${baseTypographyStyle}
+		font-size: 3rem;
+		font-family: SanFrancisco;
+		color: #2bbc8a;
+		margin: 1.2rem 0 1.2rem 0;
+	`,
+	heading2: css`
+		${baseTypographyStyle}
+		font-size: 2rem;
+		font-family: SanFrancisco;
+		color: #2bbc8a;
+		margin: 0.8rem 0 0.8rem 0;
+	`,
+	heading3: css`
+		${baseTypographyStyle}
+		font-size: 1.6rem;
+		font-family: Meslo;
+		margin: 0.8rem 0 0.8rem 0;
+	`,
+	subtitle1: css`
+		${baseTypographyStyle}
+		color: #49505e;
+		font-size: 2rem;
+		font-family: SanFrancisco;
+	`,
+	caption: css`
+		${baseTypographyStyle}
+		color: #49505e;
+	`,
+	paragraph: css`
+		${baseTypographyStyle}
+		white-space: pre-line;
+	`
+};
+
 const StyledHeading1 = styled.h1`
-	${baseTypographyStyle}
 	${handleMaxLines}
-	font-size: 3rem;
-	font-family: SanFrancisco;
-	color: #2bbc8a;
-	margin: 1.2rem 0 1.2rem 0;
+	${styles.heading1}
 `;
 
 const StyledHeading2 = styled.h2`
-	${baseTypographyStyle}
 	${handleMaxLines}
-	font-size: 2rem;
-	font-family: SanFrancisco;
-	color: #2bbc8a;
-	margin: 0.8rem 0 0.8rem 0;
+	${styles.heading2}
 `;
 
 const StyledHeading3 = styled.h3`
-	${baseTypographyStyle}
 	${handleMaxLines}
-	font-size: 1.6rem;
-	font-family: Meslo;
-	margin: 0.8rem 0 0.8rem 0;
+	${styles.heading3}
 `;
 
 const StyledSubtitle1 = styled.p`
-	${baseTypographyStyle}
 	${handleMaxLines}
-	color: #49505e;
-	font-size: 2rem;
-	font-family: SanFrancisco;
+	${styles.subtitle1}
 `;
 
 const StyledCaption = styled.p`
-	${baseTypographyStyle}
 	${handleMaxLines}
-	color: #49505e;
+	${styles.caption}
 `;
 
 const StyledParagraph = styled.p`
-	${baseTypographyStyle}
 	${handleMaxLines}
-	white-space: pre-line;
+	${styles.paragraph}
 `;
 
 export const Typography = ({
