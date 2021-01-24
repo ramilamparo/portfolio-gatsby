@@ -10,13 +10,18 @@ export interface ProjectProps extends ProjectDescriptionProps {
 }
 
 const ProjectContainer = styled.div`
-	display: flex;
+	display: grid;
+	grid-template-columns: 14rem auto;
+	grid-gap: 2rem;
+
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
 `;
 
 const StyledImageSlideshow = styled(ImageSlideshow)`
-	flex-basis: 22rem;
 	height: 12rem;
-	margin-right: 5rem;
+	margin: 2rem;
 `;
 
 export const Project = ({
