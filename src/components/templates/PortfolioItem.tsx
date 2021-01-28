@@ -11,6 +11,7 @@ import { ImageCarousel } from "../presentational/ImageCarousel";
 import { Typography } from "../presentational/Typography";
 import { IconLink } from "../presentational/IconLink";
 import { Breakpoints } from "../../utils/styles/breakpoints";
+import { Markdown } from "../presentational/Markdown";
 
 interface PortfolioItemProps {
 	data: StrapiResponse<"portfolio", StrapiPortfolio>;
@@ -67,9 +68,7 @@ const PortfolioItem = ({ data }: PortfolioItemProps) => {
 					{renderLink(data.strapi.portfolio.demoLink, "Demo Link", IoGlobe)}
 				</div>
 			</TitleContainer>
-			<Typography variant="paragraph">
-				{data.strapi.portfolio.description}
-			</Typography>
+			<Markdown>{data.strapi.portfolio.description}</Markdown>
 		</>
 	);
 };
