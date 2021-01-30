@@ -30,3 +30,7 @@ body {
 	box-sizing: border-box;
 	background-color: #18181a;
 }
+
+a {
+	color: white;
+}
